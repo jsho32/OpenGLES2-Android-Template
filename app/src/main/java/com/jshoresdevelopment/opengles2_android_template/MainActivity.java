@@ -1,17 +1,33 @@
 package com.jshoresdevelopment.opengles2_android_template;
 
+import android.app.Activity;
+import android.app.ActivityManager;
+import android.content.Context;
+import android.content.pm.ConfigurationInfo;
+import android.opengl.GLSurfaceView;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.Toast;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        MainRenderer mainRenderer = new MainRenderer(this);
+        MainSurfaceView mainSurfaceView = new MainSurfaceView(this);
+        mainSurfaceView.setEGLContextClientVersion(2);
+        mainSurfaceView.setRenderer(mainRenderer);
+        this.setContentView(mainSurfaceView);
     }
 
     @Override

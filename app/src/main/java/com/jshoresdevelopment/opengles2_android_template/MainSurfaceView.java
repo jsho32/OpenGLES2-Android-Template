@@ -10,5 +10,6 @@ public class MainSurfaceView extends GLSurfaceView {
 
     public MainSurfaceView(Context context) {
         super(context);
+        //setRenderMode(RENDERMODE_WHEN_DIRTY);
     }
 }
